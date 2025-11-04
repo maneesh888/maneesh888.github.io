@@ -1,4 +1,4 @@
-# Maneesh Madayan - Portfolio Website
+# Maneesh - Portfolio Website
 
 Welcome to my professional portfolio! This website showcases my 10+ years of experience as a Senior iOS Developer, highlighting my expertise across the entire Apple ecosystem.
 

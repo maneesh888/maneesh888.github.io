@@ -3,7 +3,12 @@
     "allow": [
       "WebSearch",
       "Bash(open index.html)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$(cat <<''EOF''\nBuild professional portfolio website with modern design\n\nThis commit introduces a complete portfolio redesign featuring:\n\n✨ Features:\n- Modern dark theme with Apple-inspired aesthetics\n- Fully responsive design (mobile, tablet, desktop)\n- Interactive animations and smooth scrolling\n- Comprehensive showcase of 10+ years iOS development experience\n- Featured projects: DEWA Smart, STC TV/Jawwy TV, Videotron Helix TV\n\n🎨 Design:\n- Clean, professional layout with gradient accents\n- Timeline-based work experience display\n- Organized skills by categories (Apple Ecosystem, Languages, Architecture)\n- Interactive contact cards with hover effects\n- Mobile navigation with hamburger menu\n\n🔧 Technical Implementation:\n- Semantic HTML5 with proper accessibility\n- Modern CSS3 with custom properties and animations\n- Vanilla JavaScript for interactivity (no dependencies)\n- SEO optimized with meta tags\n- Fast loading with optimized assets\n\n📝 Content:\n- Complete professional summary and experience\n- All projects with ratings and achievements\n- Skills across iOS, iPadOS, watchOS, tvOS, visionOS\n- Contact information and availability status\n- Updated README with credits and build information\n\n🤖 Generated with Claude Code (https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
+      "Bash(git push:*)",
+      "Bash(open:*)",
+      "Bash(python3:*)",
+      "Bash(curl:*)"
     ],
     "deny": [],
     "ask": []
