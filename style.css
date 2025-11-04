@@ -269,6 +269,46 @@ body {
     letter-spacing: 1px;
 }
 
+/* Platform Tiles */
+.platform-tiles {
+    display: flex;
+    gap: 1rem;
+    margin-top: 3rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.platform-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    transition: var(--transition);
+    min-width: 100px;
+}
+
+.platform-card:hover {
+    border-color: var(--primary-color);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 24px rgba(0, 122, 255, 0.2);
+}
+
+.platform-icon {
+    font-size: 2rem;
+    line-height: 1;
+}
+
+.platform-name {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-align: center;
+}
+
 /* ===================================
    Section Styles
    =================================== */
