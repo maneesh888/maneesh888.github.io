@@ -243,6 +243,37 @@ body {
     font-size: 1.125rem;
 }
 
+.btn-portfolio {
+    background: var(--gradient-1);
+    color: white;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn-portfolio:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+}
+
+.portfolio-icon {
+    font-size: 1.125rem;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.inline-link {
+    color: var(--primary-color);
+    text-decoration: none;
+    border-bottom: 1px solid var(--primary-color);
+    transition: var(--transition);
+}
+
+.inline-link:hover {
+    color: var(--secondary-color);
+    border-bottom-color: var(--secondary-color);
+}
+
 .hero-stats {
     display: flex;
     gap: 3rem;
@@ -553,6 +584,78 @@ section {
    =================================== */
 .projects {
     background: var(--card-bg);
+}
+
+.portfolio-highlight-banner {
+    background: var(--gradient-1);
+    border-radius: 20px;
+    padding: 2rem;
+    margin-bottom: 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    box-shadow: 0 8px 32px rgba(102, 126, 234, 0.3);
+    transition: var(--transition);
+}
+
+.portfolio-highlight-banner:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(102, 126, 234, 0.4);
+}
+
+.banner-content {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex: 1;
+}
+
+.banner-icon {
+    font-size: 3rem;
+    animation: pulse 2s ease-in-out infinite;
+    flex-shrink: 0;
+}
+
+.banner-text h3 {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.banner-text p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.banner-cta {
+    background: white;
+    color: var(--secondary-color);
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: var(--transition);
+    white-space: nowrap;
+}
+
+.banner-cta:hover {
+    background: rgba(255, 255, 255, 0.95);
+    transform: translateX(5px);
+}
+
+.banner-cta .arrow {
+    font-size: 1.25rem;
+    transition: var(--transition);
+}
+
+.banner-cta:hover .arrow {
+    transform: translateX(5px);
 }
 
 .projects-grid {
@@ -1203,6 +1306,30 @@ section {
 
     .projects-grid {
         grid-template-columns: 1fr;
+    }
+
+    .portfolio-highlight-banner {
+        flex-direction: column;
+        text-align: center;
+        padding: 1.5rem;
+    }
+
+    .banner-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .banner-text h3 {
+        font-size: 1.25rem;
+    }
+
+    .banner-text p {
+        font-size: 0.875rem;
+    }
+
+    .banner-cta {
+        width: 100%;
+        justify-content: center;
     }
 
     .skills-grid {
