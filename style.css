@@ -16,6 +16,7 @@
 body[data-theme="dark"] {
     --dark-bg: #1C1C1E;
     --card-bg: #2C2C2E;
+    --navbar-bg: rgba(28, 28, 30, 0.95);
     --text-primary: #FFFFFF;
     --text-secondary: #EBEBF5;
     --text-tertiary: #EBEBF599;
@@ -31,6 +32,7 @@ body[data-theme="dark"] {
 body[data-theme="light"] {
     --dark-bg: #FFFFFF;
     --card-bg: #F8F9FA;
+    --navbar-bg: rgba(255, 255, 255, 0.95);
     --text-primary: #1A1A1A;
     --text-secondary: #4A4A4A;
     --text-tertiary: #6B6B6B;
@@ -46,6 +48,7 @@ body[data-theme="light"] {
 body {
     --dark-bg: #1C1C1E;
     --card-bg: #2C2C2E;
+    --navbar-bg: rgba(28, 28, 30, 0.95);
     --text-primary: #FFFFFF;
     --text-secondary: #EBEBF5;
     --text-tertiary: #EBEBF599;
@@ -96,7 +99,7 @@ body * {
     top: 0;
     left: 0;
     right: 0;
-    background: rgba(28, 28, 30, 0.95);
+    background: var(--navbar-bg);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--border-color);
     z-index: 1000;
