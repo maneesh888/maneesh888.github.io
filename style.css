@@ -6,19 +6,55 @@
     --secondary-color: #5856D6;
     --accent-color: #FF2D55;
     --success-color: #34C759;
+    --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Dark Theme (Default) */
+body[data-theme="dark"] {
     --dark-bg: #1C1C1E;
     --card-bg: #2C2C2E;
     --text-primary: #FFFFFF;
     --text-secondary: #EBEBF5;
     --text-tertiary: #EBEBF599;
     --border-color: #38383A;
-    --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-    --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
     --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
     --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.15);
     --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.2);
-    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --hero-glow: rgba(0, 122, 255, 0.1);
+    --portfolio-bg-gradient: linear-gradient(180deg, #2C2C2E 0%, rgba(0, 122, 255, 0.03) 50%, #2C2C2E 100%);
+}
+
+/* Light Theme */
+body[data-theme="light"] {
+    --dark-bg: #FFFFFF;
+    --card-bg: #F8F9FA;
+    --text-primary: #1A1A1A;
+    --text-secondary: #4A4A4A;
+    --text-tertiary: #6B6B6B;
+    --border-color: #E1E4E8;
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.12);
+    --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.15);
+    --hero-glow: rgba(0, 122, 255, 0.08);
+    --portfolio-bg-gradient: linear-gradient(180deg, #F8F9FA 0%, rgba(0, 122, 255, 0.02) 50%, #F8F9FA 100%);
+}
+
+/* Default to dark theme if no preference */
+body {
+    --dark-bg: #1C1C1E;
+    --card-bg: #2C2C2E;
+    --text-primary: #FFFFFF;
+    --text-secondary: #EBEBF5;
+    --text-tertiary: #EBEBF599;
+    --border-color: #38383A;
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.15);
+    --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.2);
+    --hero-glow: rgba(0, 122, 255, 0.1);
+    --portfolio-bg-gradient: linear-gradient(180deg, #2C2C2E 0%, rgba(0, 122, 255, 0.03) 50%, #2C2C2E 100%);
 }
 
 * {
@@ -38,6 +74,12 @@ body {
     color: var(--text-primary);
     line-height: 1.6;
     overflow-x: hidden;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Smooth transitions for theme changes */
+body * {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
 .container {
@@ -107,6 +149,12 @@ body {
     width: 100%;
 }
 
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
 .hamburger {
     display: none;
     flex-direction: column;
@@ -120,6 +168,49 @@ body {
     background: var(--text-primary);
     border-radius: 3px;
     transition: var(--transition);
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+    background: transparent;
+    border: 2px solid var(--border-color);
+    border-radius: 50%;
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: var(--transition);
+    font-size: 1.25rem;
+    margin-left: 1rem;
+}
+
+.theme-toggle:hover {
+    border-color: var(--primary-color);
+    transform: rotate(180deg);
+    background: rgba(0, 122, 255, 0.1);
+}
+
+.theme-toggle .sun-icon,
+.theme-toggle .moon-icon {
+    transition: var(--transition);
+}
+
+body[data-theme="dark"] .theme-toggle .sun-icon {
+    display: none;
+}
+
+body[data-theme="dark"] .theme-toggle .moon-icon {
+    display: block;
+}
+
+body[data-theme="light"] .theme-toggle .sun-icon {
+    display: block;
+}
+
+body[data-theme="light"] .theme-toggle .moon-icon {
+    display: none;
 }
 
 /* ===================================
@@ -141,7 +232,7 @@ body {
     right: -30%;
     width: 80%;
     height: 150%;
-    background: radial-gradient(circle, rgba(0, 122, 255, 0.1) 0%, transparent 70%);
+    background: radial-gradient(circle, var(--hero-glow) 0%, transparent 70%);
     animation: float 20s ease-in-out infinite;
 }
 
@@ -895,7 +986,7 @@ section {
    Portfolio Showcase Section
    =================================== */
 .portfolio-showcase {
-    background: linear-gradient(180deg, var(--card-bg) 0%, rgba(0, 122, 255, 0.03) 50%, var(--card-bg) 100%);
+    background: var(--portfolio-bg-gradient);
     position: relative;
     overflow: hidden;
 }
@@ -907,7 +998,7 @@ section {
     left: -50%;
     width: 200%;
     height: 100%;
-    background: radial-gradient(circle at 50% 50%, rgba(0, 122, 255, 0.05) 0%, transparent 50%);
+    background: radial-gradient(circle at 50% 50%, var(--hero-glow) 0%, transparent 50%);
     animation: float 30s ease-in-out infinite;
 }
 
@@ -1248,6 +1339,13 @@ section {
 
     .hamburger {
         display: flex;
+    }
+
+    .theme-toggle {
+        width: 38px;
+        height: 38px;
+        font-size: 1.1rem;
+        margin-left: 0;
     }
 
     .hero {
