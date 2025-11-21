@@ -681,21 +681,23 @@ section {
 }
 
 .portfolio-highlight-banner {
-    background: var(--gradient-1);
+    background: var(--card-bg);
+    border: 1px solid rgba(102, 126, 234, 0.2);
     border-radius: 20px;
     padding: 2rem;
-    margin-bottom: 3rem;
+    margin-top: 3rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 2rem;
-    box-shadow: 0 8px 32px rgba(102, 126, 234, 0.3);
+    box-shadow: var(--shadow-sm);
     transition: var(--transition);
 }
 
 .portfolio-highlight-banner:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 40px rgba(102, 126, 234, 0.4);
+    transform: translateY(-3px);
+    border-color: rgba(102, 126, 234, 0.4);
+    box-shadow: var(--shadow-md);
 }
 
 .banner-content {
@@ -712,21 +714,21 @@ section {
 }
 
 .banner-text h3 {
-    color: white;
+    color: var(--text-primary);
     font-size: 1.5rem;
     font-weight: 700;
     margin-bottom: 0.5rem;
 }
 
 .banner-text p {
-    color: rgba(255, 255, 255, 0.9);
+    color: var(--text-secondary);
     font-size: 0.95rem;
     line-height: 1.6;
 }
 
 .banner-cta {
-    background: white;
-    color: var(--secondary-color);
+    background: var(--primary-color);
+    color: white;
     padding: 1rem 2rem;
     border-radius: 12px;
     text-decoration: none;
@@ -739,7 +741,7 @@ section {
 }
 
 .banner-cta:hover {
-    background: rgba(255, 255, 255, 0.95);
+    background: #0051D5;
     transform: translateX(5px);
 }
 
