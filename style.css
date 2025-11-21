@@ -1261,12 +1261,15 @@ section {
     border-radius: 12px;
     border: 1px solid var(--border-color);
     transition: var(--transition);
+    text-decoration: none;
+    cursor: pointer;
 }
 
 .doc-item:hover {
     border-color: var(--primary-color);
     transform: translateX(5px);
     box-shadow: var(--shadow-sm);
+    background: rgba(0, 122, 255, 0.05);
 }
 
 .doc-icon {
@@ -1582,6 +1585,20 @@ button:focus {
 .project-link:hover {
     color: var(--secondary-color);
     transform: translateX(5px);
+}
+
+/* Portfolio Project Card - Subtle Styling */
+.portfolio-project {
+    border: 1px solid rgba(102, 126, 234, 0.2);
+}
+
+.portfolio-project:hover {
+    border-color: rgba(102, 126, 234, 0.4);
+}
+
+.portfolio-badge {
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.15) 0%, rgba(118, 75, 162, 0.15) 100%);
+    color: var(--secondary-color);
 }
 
 /* ===================================
