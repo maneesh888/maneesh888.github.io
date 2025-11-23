@@ -1686,3 +1686,514 @@ button:focus {
         grid-template-columns: 1fr;
     }
 }
+
+/* ===================================
+   Swipe Demo Section
+   =================================== */
+.swipe-demo-section {
+    background: var(--dark-bg);
+    padding: 2.5rem;
+    border-radius: 20px;
+    border: 1px solid var(--border-color);
+    margin-bottom: 4rem;
+}
+
+.demo-description {
+    text-align: center;
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+    font-size: 1rem;
+}
+
+.expense-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Expense Item with Swipe Actions */
+.expense-item-wrapper {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+.expense-item-actions {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    font-weight: 600;
+    font-size: 0.875rem;
+    color: white;
+    transition: opacity 0.2s ease;
+}
+
+.expense-item-actions.edit-action {
+    left: 0;
+    background: var(--primary-color);
+}
+
+.expense-item-actions.delete-action {
+    right: 0;
+    background: var(--accent-color);
+}
+
+.expense-item {
+    position: relative;
+    background: var(--card-bg);
+    padding: 1.25rem 1.5rem;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: grab;
+    transition: transform 0.3s ease, box-shadow 0.2s ease;
+    z-index: 1;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: pan-y;
+}
+
+.expense-item:active {
+    cursor: grabbing;
+}
+
+.expense-item.swiping {
+    transition: none;
+}
+
+.expense-item.swiped-right {
+    transform: translateX(100px);
+}
+
+.expense-item.swiped-left {
+    transform: translateX(-100px);
+}
+
+.expense-item:hover {
+    border-color: var(--primary-color);
+    box-shadow: var(--shadow-sm);
+}
+
+.expense-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.expense-category-icon {
+    font-size: 1.5rem;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 122, 255, 0.1);
+    border-radius: 10px;
+}
+
+.expense-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.expense-description {
+    font-weight: 600;
+    color: var(--text-primary);
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+}
+
+.expense-category {
+    font-size: 0.8rem;
+    color: var(--text-tertiary);
+}
+
+.expense-amount-wrapper {
+    text-align: right;
+}
+
+.expense-amount {
+    font-weight: 700;
+    font-size: 1.125rem;
+    color: var(--text-primary);
+}
+
+.expense-currency {
+    font-size: 0.75rem;
+    color: var(--text-tertiary);
+    display: block;
+}
+
+.add-expense-btn {
+    display: block;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 1rem;
+    border: 2px dashed var(--border-color);
+    background: transparent;
+    color: var(--text-secondary);
+    border-radius: 12px;
+}
+
+.add-expense-btn:hover {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    background: rgba(0, 122, 255, 0.05);
+}
+
+/* Swipe hint animation */
+.swipe-hint {
+    animation: swipeHint 2s ease-in-out infinite;
+}
+
+@keyframes swipeHint {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(20px); }
+    75% { transform: translateX(-20px); }
+}
+
+/* ===================================
+   Edit Modal Styles
+   =================================== */
+.edit-modal-overlay,
+.delete-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    padding: 1rem;
+}
+
+.edit-modal-overlay.active,
+.delete-modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.edit-modal {
+    background: var(--card-bg);
+    border-radius: 20px;
+    width: 100%;
+    max-width: 450px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    transform: scale(0.9) translateY(20px);
+    transition: transform 0.3s ease;
+}
+
+.edit-modal-overlay.active .edit-modal {
+    transform: scale(1) translateY(0);
+}
+
+.edit-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 2rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.edit-modal-header h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.modal-close-btn {
+    background: transparent;
+    border: none;
+    font-size: 1.75rem;
+    color: var(--text-tertiary);
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+    transition: color 0.2s ease;
+}
+
+.modal-close-btn:hover {
+    color: var(--accent-color);
+}
+
+.edit-modal-body {
+    padding: 2rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group:last-child {
+    margin-bottom: 0;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+}
+
+.form-input {
+    width: 100%;
+    padding: 1rem 1.25rem;
+    font-size: 1rem;
+    background: var(--dark-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    color: var(--text-primary);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    font-family: inherit;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.2);
+}
+
+.form-input::placeholder {
+    color: var(--text-tertiary);
+}
+
+/* Custom Dropdown */
+.custom-dropdown {
+    position: relative;
+}
+
+.dropdown-selected {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.25rem;
+    background: var(--dark-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: border-color 0.2s ease;
+}
+
+.dropdown-selected:hover {
+    border-color: var(--primary-color);
+}
+
+.custom-dropdown.open .dropdown-selected {
+    border-color: var(--primary-color);
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.dropdown-value {
+    color: var(--text-primary);
+    font-size: 1rem;
+}
+
+.dropdown-arrow {
+    color: var(--text-tertiary);
+    font-size: 0.75rem;
+    transition: transform 0.2s ease;
+}
+
+.custom-dropdown.open .dropdown-arrow {
+    transform: rotate(180deg);
+}
+
+.dropdown-options {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--dark-bg);
+    border: 1px solid var(--primary-color);
+    border-top: none;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 100;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+}
+
+.custom-dropdown.open .dropdown-options {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-option {
+    padding: 0.875rem 1.25rem;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.dropdown-option:hover {
+    background: rgba(0, 122, 255, 0.1);
+    color: var(--primary-color);
+}
+
+.dropdown-option:last-child {
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+
+.dropdown-option.selected {
+    background: rgba(0, 122, 255, 0.15);
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.edit-modal-footer {
+    display: flex;
+    gap: 1rem;
+    padding: 1.5rem 2rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.edit-modal-footer .btn {
+    flex: 1;
+}
+
+.modal-cancel-btn {
+    background: transparent;
+    border: 1px solid var(--border-color);
+}
+
+.modal-cancel-btn:hover {
+    background: var(--dark-bg);
+    border-color: var(--text-tertiary);
+}
+
+/* ===================================
+   Delete Confirmation Modal
+   =================================== */
+.delete-modal {
+    background: var(--card-bg);
+    border-radius: 20px;
+    padding: 2.5rem;
+    text-align: center;
+    max-width: 380px;
+    width: 100%;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+}
+
+.delete-modal-overlay.active .delete-modal {
+    transform: scale(1);
+}
+
+.delete-modal-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.delete-modal h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.75rem;
+}
+
+.delete-modal p {
+    color: var(--text-tertiary);
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+.delete-modal-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+.delete-modal-actions .btn {
+    flex: 1;
+}
+
+.btn-danger {
+    background: var(--accent-color);
+    color: white;
+    box-shadow: 0 4px 15px rgba(255, 45, 85, 0.3);
+}
+
+.btn-danger:hover {
+    background: #E01E4F;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 45, 85, 0.4);
+}
+
+/* ===================================
+   Swipe Demo Responsive
+   =================================== */
+@media (max-width: 768px) {
+    .swipe-demo-section {
+        padding: 1.5rem;
+    }
+
+    .expense-item {
+        padding: 1rem 1.25rem;
+    }
+
+    .expense-category-icon {
+        width: 36px;
+        height: 36px;
+        font-size: 1.25rem;
+    }
+
+    .expense-description {
+        font-size: 0.9rem;
+    }
+
+    .expense-amount {
+        font-size: 1rem;
+    }
+
+    .edit-modal {
+        margin: 1rem;
+        max-height: calc(100vh - 2rem);
+    }
+
+    .edit-modal-body {
+        padding: 1.5rem;
+    }
+
+    .edit-modal-footer {
+        padding: 1.25rem 1.5rem;
+        flex-direction: column;
+    }
+
+    .delete-modal {
+        margin: 1rem;
+        padding: 2rem 1.5rem;
+    }
+
+    .delete-modal-actions {
+        flex-direction: column;
+    }
+}

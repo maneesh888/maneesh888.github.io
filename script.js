@@ -385,3 +385,419 @@ window.addEventListener('load', () => {
         console.log(`⚡ Page loaded in ${pageLoadTime}ms`);
     }
 });
+
+// ===================================
+// Swipe Demo - Expense Tracker
+// ===================================
+
+// Category icons mapping
+const categoryIcons = {
+    'Food': '🍔',
+    'Transport': '🚗',
+    'Shopping': '🛒',
+    'Entertainment': '🎬',
+    'Bills': '📄',
+    'Health': '🏥',
+    'Travel': '✈️',
+    'Other': '📦'
+};
+
+// Sample expense data
+let expenses = [
+    { id: 1, description: 'Coffee & Breakfast', amount: 12.50, currency: 'USD', category: 'Food' },
+    { id: 2, description: 'Uber to Office', amount: 25.00, currency: 'AED', category: 'Transport' },
+    { id: 3, description: 'Netflix Subscription', amount: 15.99, currency: 'USD', category: 'Entertainment' },
+    { id: 4, description: 'Grocery Shopping', amount: 85.75, currency: 'EUR', category: 'Shopping' }
+];
+
+let nextId = 5;
+let editingExpenseId = null;
+let deletingExpenseId = null;
+
+// DOM Elements
+const expenseList = document.getElementById('expenseList');
+const editModalOverlay = document.getElementById('editModalOverlay');
+const deleteModalOverlay = document.getElementById('deleteModalOverlay');
+const modalTitle = document.getElementById('modalTitle');
+const expenseDescription = document.getElementById('expenseDescription');
+const expenseAmount = document.getElementById('expenseAmount');
+const addExpenseBtn = document.getElementById('addExpenseBtn');
+
+// Initialize the demo
+function initSwipeDemo() {
+    if (!expenseList) return;
+
+    renderExpenses();
+    setupModalEvents();
+    setupDropdowns();
+}
+
+// Render all expenses
+function renderExpenses() {
+    expenseList.innerHTML = '';
+    expenses.forEach((expense, index) => {
+        const wrapper = createExpenseElement(expense, index === 0);
+        expenseList.appendChild(wrapper);
+    });
+}
+
+// Create expense element with swipe functionality
+function createExpenseElement(expense, isFirst = false) {
+    const wrapper = document.createElement('div');
+    wrapper.className = 'expense-item-wrapper';
+    wrapper.dataset.id = expense.id;
+
+    wrapper.innerHTML = `
+        <div class="expense-item-actions edit-action">✏️ Edit</div>
+        <div class="expense-item-actions delete-action">🗑️ Delete</div>
+        <div class="expense-item ${isFirst ? 'swipe-hint' : ''}" data-id="${expense.id}">
+            <div class="expense-info">
+                <div class="expense-category-icon">${categoryIcons[expense.category] || '📦'}</div>
+                <div class="expense-details">
+                    <span class="expense-description">${expense.description}</span>
+                    <span class="expense-category">${expense.category}</span>
+                </div>
+            </div>
+            <div class="expense-amount-wrapper">
+                <span class="expense-amount">${formatAmount(expense.amount)}</span>
+                <span class="expense-currency">${expense.currency}</span>
+            </div>
+        </div>
+    `;
+
+    const item = wrapper.querySelector('.expense-item');
+    setupSwipeGesture(item, wrapper);
+
+    // Remove hint animation after first interaction
+    if (isFirst) {
+        item.addEventListener('mousedown', () => item.classList.remove('swipe-hint'), { once: true });
+        item.addEventListener('touchstart', () => item.classList.remove('swipe-hint'), { once: true });
+    }
+
+    return wrapper;
+}
+
+// Format amount with commas
+function formatAmount(amount) {
+    return amount.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+}
+
+// Setup swipe gesture for an item
+function setupSwipeGesture(item, wrapper) {
+    let startX = 0;
+    let currentX = 0;
+    let isDragging = false;
+    const threshold = 80;
+    const maxSwipe = 100;
+
+    // Touch events
+    item.addEventListener('touchstart', handleStart, { passive: true });
+    item.addEventListener('touchmove', handleMove, { passive: false });
+    item.addEventListener('touchend', handleEnd);
+
+    // Mouse events
+    item.addEventListener('mousedown', handleStart);
+    document.addEventListener('mousemove', handleMouseMove);
+    document.addEventListener('mouseup', handleMouseEnd);
+
+    function handleStart(e) {
+        if (e.type === 'mousedown' && e.button !== 0) return;
+
+        isDragging = true;
+        startX = e.type === 'touchstart' ? e.touches[0].clientX : e.clientX;
+        item.classList.add('swiping');
+        item.classList.remove('swiped-left', 'swiped-right');
+    }
+
+    function handleMove(e) {
+        if (!isDragging) return;
+
+        const clientX = e.type === 'touchmove' ? e.touches[0].clientX : e.clientX;
+        currentX = clientX - startX;
+
+        // Limit swipe distance
+        currentX = Math.max(-maxSwipe, Math.min(maxSwipe, currentX));
+
+        item.style.transform = `translateX(${currentX}px)`;
+
+        // Prevent scrolling while swiping horizontally
+        if (Math.abs(currentX) > 10) {
+            e.preventDefault();
+        }
+    }
+
+    function handleMouseMove(e) {
+        if (!isDragging || !item.classList.contains('swiping')) return;
+        handleMove(e);
+    }
+
+    function handleEnd() {
+        if (!isDragging) return;
+
+        isDragging = false;
+        item.classList.remove('swiping');
+        item.style.transform = '';
+
+        const expenseId = parseInt(wrapper.dataset.id);
+
+        if (currentX > threshold) {
+            // Swipe right - Edit
+            item.classList.add('swiped-right');
+            setTimeout(() => {
+                item.classList.remove('swiped-right');
+                openEditModal(expenseId);
+            }, 200);
+        } else if (currentX < -threshold) {
+            // Swipe left - Delete
+            item.classList.add('swiped-left');
+            setTimeout(() => {
+                item.classList.remove('swiped-left');
+                openDeleteModal(expenseId);
+            }, 200);
+        }
+
+        currentX = 0;
+    }
+
+    function handleMouseEnd() {
+        if (isDragging && item.classList.contains('swiping')) {
+            handleEnd();
+        }
+    }
+}
+
+// Setup modal events
+function setupModalEvents() {
+    // Edit modal
+    document.getElementById('modalCloseBtn')?.addEventListener('click', closeEditModal);
+    document.getElementById('modalCancelBtn')?.addEventListener('click', closeEditModal);
+    document.getElementById('modalSaveBtn')?.addEventListener('click', saveExpense);
+    editModalOverlay?.addEventListener('click', (e) => {
+        if (e.target === editModalOverlay) closeEditModal();
+    });
+
+    // Delete modal
+    document.getElementById('deleteCancelBtn')?.addEventListener('click', closeDeleteModal);
+    document.getElementById('deleteConfirmBtn')?.addEventListener('click', confirmDelete);
+    deleteModalOverlay?.addEventListener('click', (e) => {
+        if (e.target === deleteModalOverlay) closeDeleteModal();
+    });
+
+    // Add expense button
+    addExpenseBtn?.addEventListener('click', () => {
+        editingExpenseId = null;
+        modalTitle.textContent = 'Add New Expense';
+        expenseDescription.value = '';
+        expenseAmount.value = '';
+        setDropdownValue('currencyDropdown', 'USD');
+        setDropdownValue('categoryDropdown', 'Food');
+        openEditModal();
+    });
+
+    // Close modals on Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            closeEditModal();
+            closeDeleteModal();
+        }
+    });
+}
+
+// Setup custom dropdowns
+function setupDropdowns() {
+    const dropdowns = document.querySelectorAll('.custom-dropdown');
+
+    dropdowns.forEach(dropdown => {
+        const selected = dropdown.querySelector('.dropdown-selected');
+        const options = dropdown.querySelectorAll('.dropdown-option');
+
+        // Toggle dropdown on click
+        selected?.addEventListener('click', (e) => {
+            e.stopPropagation();
+
+            // Close other dropdowns
+            dropdowns.forEach(d => {
+                if (d !== dropdown) d.classList.remove('open');
+            });
+
+            dropdown.classList.toggle('open');
+        });
+
+        // Select option
+        options.forEach(option => {
+            option.addEventListener('click', () => {
+                const value = option.dataset.value;
+                const valueDisplay = dropdown.querySelector('.dropdown-value');
+
+                // Update selected value
+                valueDisplay.textContent = value;
+
+                // Update selected state
+                options.forEach(opt => opt.classList.remove('selected'));
+                option.classList.add('selected');
+
+                // Close dropdown
+                dropdown.classList.remove('open');
+            });
+        });
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', () => {
+        dropdowns.forEach(d => d.classList.remove('open'));
+    });
+}
+
+// Set dropdown value
+function setDropdownValue(dropdownId, value) {
+    const dropdown = document.getElementById(dropdownId);
+    if (!dropdown) return;
+
+    const valueDisplay = dropdown.querySelector('.dropdown-value');
+    const options = dropdown.querySelectorAll('.dropdown-option');
+
+    valueDisplay.textContent = value;
+
+    options.forEach(opt => {
+        opt.classList.toggle('selected', opt.dataset.value === value);
+    });
+}
+
+// Get dropdown value
+function getDropdownValue(dropdownId) {
+    const dropdown = document.getElementById(dropdownId);
+    if (!dropdown) return '';
+
+    return dropdown.querySelector('.dropdown-value').textContent;
+}
+
+// Open edit modal
+function openEditModal(expenseId = null) {
+    if (expenseId) {
+        editingExpenseId = expenseId;
+        const expense = expenses.find(e => e.id === expenseId);
+
+        if (expense) {
+            modalTitle.textContent = 'Edit Expense';
+            expenseDescription.value = expense.description;
+            expenseAmount.value = expense.amount;
+            setDropdownValue('currencyDropdown', expense.currency);
+            setDropdownValue('categoryDropdown', expense.category);
+        }
+    }
+
+    editModalOverlay?.classList.add('active');
+    document.body.style.overflow = 'hidden';
+
+    // Focus on description input
+    setTimeout(() => expenseDescription?.focus(), 300);
+}
+
+// Close edit modal
+function closeEditModal() {
+    editModalOverlay?.classList.remove('active');
+    document.body.style.overflow = '';
+    editingExpenseId = null;
+
+    // Close any open dropdowns
+    document.querySelectorAll('.custom-dropdown').forEach(d => d.classList.remove('open'));
+}
+
+// Save expense
+function saveExpense() {
+    const description = expenseDescription.value.trim();
+    const amount = parseFloat(expenseAmount.value);
+    const currency = getDropdownValue('currencyDropdown');
+    const category = getDropdownValue('categoryDropdown');
+
+    if (!description) {
+        expenseDescription.focus();
+        return;
+    }
+
+    if (isNaN(amount) || amount <= 0) {
+        expenseAmount.focus();
+        return;
+    }
+
+    if (editingExpenseId) {
+        // Update existing expense
+        const expense = expenses.find(e => e.id === editingExpenseId);
+        if (expense) {
+            expense.description = description;
+            expense.amount = amount;
+            expense.currency = currency;
+            expense.category = category;
+        }
+    } else {
+        // Add new expense
+        expenses.unshift({
+            id: nextId++,
+            description,
+            amount,
+            currency,
+            category
+        });
+    }
+
+    renderExpenses();
+    closeEditModal();
+
+    // Show success toast
+    showToast(editingExpenseId ? 'Expense updated!' : 'Expense added!');
+}
+
+// Open delete modal
+function openDeleteModal(expenseId) {
+    deletingExpenseId = expenseId;
+    deleteModalOverlay?.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+// Close delete modal
+function closeDeleteModal() {
+    deleteModalOverlay?.classList.remove('active');
+    document.body.style.overflow = '';
+    deletingExpenseId = null;
+}
+
+// Confirm delete
+function confirmDelete() {
+    if (deletingExpenseId) {
+        expenses = expenses.filter(e => e.id !== deletingExpenseId);
+        renderExpenses();
+        showToast('Expense deleted!');
+    }
+    closeDeleteModal();
+}
+
+// Show toast notification
+function showToast(message) {
+    const toast = document.createElement('div');
+    toast.textContent = message;
+    toast.style.cssText = `
+        position: fixed;
+        bottom: 2rem;
+        left: 50%;
+        transform: translateX(-50%);
+        background: var(--success-color);
+        color: white;
+        padding: 1rem 2rem;
+        border-radius: 12px;
+        font-weight: 600;
+        z-index: 10001;
+        animation: fadeInOut 2s ease-in-out;
+        box-shadow: 0 4px 20px rgba(52, 199, 89, 0.3);
+    `;
+
+    document.body.appendChild(toast);
+
+    setTimeout(() => toast.remove(), 2000);
+}
+
+// Initialize swipe demo when DOM is ready
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initSwipeDemo);
+} else {
+    initSwipeDemo();
+}
