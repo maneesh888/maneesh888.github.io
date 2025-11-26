@@ -372,6 +372,41 @@ console.log('%cInterested in the code? Check out the repository!', 'font-size: 1
 console.log('%c🚀 Built with vanilla HTML, CSS, and JavaScript', 'font-size: 12px; color: #999;');
 
 // ===================================
+// Transparency Notice (Cookie-style)
+// ===================================
+const transparencyNotice = document.getElementById('transparency-notice');
+const dismissButton = document.getElementById('dismiss-notice');
+const NOTICE_DISMISSED_KEY = 'transparencyNoticeDismissed';
+
+// Check if notice was previously dismissed
+function isNoticeDismissed() {
+    return localStorage.getItem(NOTICE_DISMISSED_KEY) === 'true';
+}
+
+// Show notice with animation
+function showNotice() {
+    setTimeout(() => {
+        transparencyNotice.classList.remove('hidden');
+    }, 500); // Delay for smooth page load
+}
+
+// Hide notice with animation
+function hideNotice() {
+    transparencyNotice.classList.add('hidden');
+    localStorage.setItem(NOTICE_DISMISSED_KEY, 'true');
+}
+
+// Initialize notice on page load
+if (!isNoticeDismissed()) {
+    showNotice();
+}
+
+// Handle dismiss button click
+if (dismissButton) {
+    dismissButton.addEventListener('click', hideNotice);
+}
+
+// ===================================
 // Page Load Performance
 // ===================================
 window.addEventListener('load', () => {

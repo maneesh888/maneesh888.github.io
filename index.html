@@ -128,19 +128,6 @@
         </div>
     </section>
 
-    <!-- Transparency Note -->
-    <section class="transparency-note">
-        <div class="container">
-            <div class="transparency-content">
-                <div class="transparency-icon">📝</div>
-                <div class="transparency-text">
-                    <h3>About This Portfolio</h3>
-                    <p>This website was built with AI assistance (Claude Code) to achieve a polished, professional presentation. However, <strong>all technical achievements, project details, and experience described here are factually accurate</strong> and represent my actual work. The polish is in the presentation, not the content.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Projects Section -->
     <section id="projects" class="projects">
         <div class="container">
@@ -690,6 +677,21 @@
             <p>Senior iOS Developer | Dubai, UAE</p>
         </div>
     </footer>
+
+    <!-- Sticky Transparency Notice -->
+    <div id="transparency-notice" class="transparency-notice hidden">
+        <div class="transparency-notice-content">
+            <div class="transparency-notice-text">
+                <span class="transparency-notice-icon">📝</span>
+                <p><strong>About This Portfolio:</strong> This website's code and design were 100% AI-generated (Claude Code). However, all work experience, technical skills, and project achievements described here are real and verifiable. <a href="#about" class="transparency-link">Learn more</a></p>
+            </div>
+            <button id="dismiss-notice" class="transparency-notice-dismiss" aria-label="Dismiss notice">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M10 8.586L2.929 1.515 1.515 2.929 8.586 10l-7.071 7.071 1.414 1.414L10 11.414l7.071 7.071 1.414-1.414L11.414 10l7.071-7.071-1.414-1.414L10 8.586z"/>
+                </svg>
+            </button>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>
