@@ -525,6 +525,68 @@ section {
 }
 
 /* ===================================
+   Transparency Note Section
+   =================================== */
+.transparency-note {
+    padding: 2rem 0;
+    background: var(--dark-bg);
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.transparency-content {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 1.5rem 2rem;
+    background: rgba(0, 122, 255, 0.05);
+    border: 1px solid rgba(0, 122, 255, 0.2);
+    border-radius: 12px;
+}
+
+.transparency-icon {
+    font-size: 2rem;
+    line-height: 1;
+    flex-shrink: 0;
+}
+
+.transparency-text h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    color: var(--text-primary);
+}
+
+.transparency-text p {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    .transparency-content {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1.5rem;
+    }
+
+    .transparency-icon {
+        font-size: 1.5rem;
+    }
+
+    .transparency-text h3 {
+        font-size: 1.125rem;
+    }
+
+    .transparency-text p {
+        font-size: 0.95rem;
+    }
+}
+
+/* ===================================
    Experience Timeline
    =================================== */
 .experience {
