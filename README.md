@@ -48,7 +48,6 @@ Visit my portfolio at: **[https://maneesh888.github.io](https://maneesh888.githu
 ## Contact
 
 - **Email**: [maneeshjob888@gmail.com](mailto:maneeshjob888@gmail.com)
-- **Phone**: +971 58 243 7687
 - **LinkedIn**: [linkedin.com/in/maneesh888](https://linkedin.com/in/maneesh888)
 - **GitHub**: [github.com/maneesh888](https://github.com/maneesh888)
 - **Location**: Dubai, UAE
