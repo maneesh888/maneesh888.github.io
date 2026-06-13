@@ -399,7 +399,7 @@ body[data-theme="light"] .theme-toggle .moon-icon {
     display: flex;
     gap: 1.5rem;
     margin-top: 3rem;
-    justify-content: center;
+    justify-content: flex-start;
     flex-wrap: wrap;
 }
 
@@ -1617,7 +1617,7 @@ button:focus {
    Project Links
    =================================== */
 .project-links {
-    margin-top: 1.5rem;
+    margin-top: auto;
     padding-top: 1.5rem;
     border-top: 1px solid var(--border-color);
 }
@@ -1843,6 +1843,10 @@ section {
     .hero-stats,
     .social-links {
         gap: 1rem;
+    }
+
+    .social-links {
+        justify-content: center;
     }
 
 }
