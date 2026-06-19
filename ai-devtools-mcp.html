@@ -40,14 +40,14 @@
             <div class="container">
                 <div class="showcase-badge">Model Context Protocol Server</div>
                 <h1 class="section-title showcase-title">DevTools MCP Server</h1>
-                <p class="showcase-subtitle">A Python MCP server that gives AI agents real development tooling for mobile, web, and server workflows.</p>
+                <p class="showcase-subtitle">A Python MCP server that gives AI coding agents structured access to builds, simulators, emulators, tests, screenshots, logs, audits, and safe local automation.</p>
 
                 <div class="showcase-content">
                     <div class="showcase-hero">
                         <div class="showcase-description">
-                            <p class="showcase-intro"><strong>DevTools MCP Server connects AI agents to local development tools</strong>, so agent workflows can build projects, inspect simulator state, trigger Xcode, and run audits through a structured MCP interface.</p>
-                            <p class="showcase-highlight"><strong>The current implementation focuses on iOS</strong>, with tools for simulator builds, simulator discovery, Xcode run/stop automation, and pre-commit audits for changed files.</p>
-                            <p class="showcase-vision"><strong>What this demonstrates:</strong> Practical agent tooling around real developer workflows, including host-machine automation, structured build errors, multi-project configuration, and remote SSE access for container-to-host setups.</p>
+                            <p class="showcase-intro"><strong>DevTools MCP Server connects AI agents to local development tools</strong>, so agent workflows can build projects, inspect simulator and emulator state, trigger Xcode, run tests, inspect logs, capture screenshots, and run audits through a structured MCP interface.</p>
+                            <p class="showcase-highlight"><strong>The current tool surface covers iOS/Xcode, Android, and workflow automation</strong>, with planned expansion into web, backend, release, coverage, security, and runtime analysis tools.</p>
+                            <p class="showcase-vision"><strong>What this demonstrates:</strong> practical agent tooling around real developer workflows, including host-machine automation, structured build errors, multi-project configuration, bounded local CI commands, and remote SSE access for container-to-host setups.</p>
                         </div>
 
                         <div class="showcase-stats-grid">
@@ -58,48 +58,84 @@
                                 <div class="stat-detail">Tool registry for agents</div>
                             </div>
                             <div class="stat-box">
-                                <div class="stat-icon">iOS</div>
-                                <div class="stat-value">Build</div>
-                                <div class="stat-label">Automation</div>
-                                <div class="stat-detail">Simulator build workflow</div>
+                                <div class="stat-icon">Apple</div>
+                                <div class="stat-value">iOS</div>
+                                <div class="stat-label">Xcode Tools</div>
+                                <div class="stat-detail">Build, simulator, screenshots, logs</div>
                             </div>
                             <div class="stat-box">
-                                <div class="stat-icon">Xcode</div>
-                                <div class="stat-value">Run</div>
-                                <div class="stat-label">Control</div>
-                                <div class="stat-detail">AppleScript commands</div>
+                                <div class="stat-icon">Android</div>
+                                <div class="stat-value">Gradle</div>
+                                <div class="stat-label">Mobile Tools</div>
+                                <div class="stat-detail">Build, devices, tests, lint</div>
                             </div>
                             <div class="stat-box">
-                                <div class="stat-icon">SSE</div>
-                                <div class="stat-value">Remote</div>
-                                <div class="stat-label">Access</div>
-                                <div class="stat-detail">Container-to-host use</div>
+                                <div class="stat-icon">Workflow</div>
+                                <div class="stat-value">CI</div>
+                                <div class="stat-label">Local Automation</div>
+                                <div class="stat-detail">Audits and approved commands</div>
                             </div>
                         </div>
                     </div>
 
                     <div class="showcase-features">
-                        <h2 class="features-title">Technical Highlights</h2>
+                        <h2 class="features-title">Available Now</h2>
                         <div class="features-grid">
                             <div class="feature-item">
-                                <span class="feature-icon">Build</span>
-                                <h3>Structured iOS Builds</h3>
-                                <p>Runs simulator builds and parses build failures into file, line, column, and message fields that agents can act on directly.</p>
+                                <span class="feature-icon">iOS</span>
+                                <h3>iOS And Xcode</h3>
+                                <p>Builds Apple-platform projects, lists simulator targets, captures simulator screenshots, returns bounded simulator logs, and can trigger Xcode run/stop through AppleScript.</p>
                             </div>
                             <div class="feature-item">
-                                <span class="feature-icon">Sim</span>
-                                <h3>Simulator Discovery</h3>
-                                <p>Lists available simulators with UDID, state, and OS version so agents can select a usable target instead of guessing.</p>
+                                <span class="feature-icon">Android</span>
+                                <h3>Android Automation</h3>
+                                <p>Runs Gradle builds, lists emulators and devices, manages app lifecycle, runs unit or instrumented tests, parses JUnit results, and exposes lint and Kotlin hygiene checks.</p>
                             </div>
                             <div class="feature-item">
-                                <span class="feature-icon">Xcode</span>
-                                <h3>Xcode Run And Stop</h3>
-                                <p>Triggers Xcode run and stop actions through AppleScript, allowing local app execution to stay connected to agent workflows.</p>
+                                <span class="feature-icon">Workflow</span>
+                                <h3>Safe Workflow Tools</h3>
+                                <p>Checks changed files before commit, lists configured projects, runs only approved local CI commands, and manages the LLM Gateway during local development.</p>
                             </div>
                             <div class="feature-item">
-                                <span class="feature-icon">Audit</span>
-                                <h3>Changed File Audits</h3>
-                                <p>Checks changed files for design-system compliance, Swift hygiene issues, and metadata concerns before commits.</p>
+                                <span class="feature-icon">SSE</span>
+                                <h3>Container-To-Host Access</h3>
+                                <p>SSE mode lets container-based agents call host-machine tools like Xcode on the Mac without pretending those tools are available inside the container.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="showcase-features">
+                        <h2 class="features-title">Quality Checks</h2>
+                        <div class="features-grid">
+                            <div class="feature-item">
+                                <span class="feature-icon">Swift</span>
+                                <h3>Swift Hygiene</h3>
+                                <p>Checks for print, try!, fatalError, TODO, and FIXME before code reaches a commit.</p>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">Design</span>
+                                <h3>Design-System Checks</h3>
+                                <p>Flags hardcoded colors, raw RGB/hex values, and system font usage in changed files.</p>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">Meta</span>
+                                <h3>File Metadata Checks</h3>
+                                <p>Looks for unwanted generated headers and project noise that should not be committed.</p>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">Locale</span>
+                                <h3>Localization Support</h3>
+                                <p>Supports xcstrings read/write flows and localization audits for Apple-platform projects.</p>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">Kotlin</span>
+                                <h3>Kotlin Hygiene</h3>
+                                <p>Checks for println, !! null assertions, and TODO/FIXME comments in Android work.</p>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">Errors</span>
+                                <h3>Structured Results</h3>
+                                <p>Keeps build errors compact enough for an AI agent to understand and act on directly.</p>
                             </div>
                         </div>
                     </div>
@@ -123,14 +159,43 @@
                                     <span class="tech-tag-inline">Xcode</span>
                                     <span class="tech-tag-inline">AppleScript</span>
                                     <span class="tech-tag-inline">iOS Simulator</span>
+                                    <span class="tech-tag-inline">Gradle</span>
+                                    <span class="tech-tag-inline">Android Emulator</span>
+                                    <span class="tech-tag-inline">JUnit</span>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="showcase-features">
+                        <h2 class="features-title">Planned Tool Areas</h2>
+                        <div class="features-grid">
+                            <div class="feature-item">
+                                <span class="feature-icon">Web</span>
+                                <h3>Web Apps</h3>
+                                <p>Planned tools for Vite, Next.js, React builds, previews, browser tests, deploy checks, Lighthouse, and bundle analysis.</p>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">Server</span>
+                                <h3>Server And Backend</h3>
+                                <p>Planned tools for REST or GraphQL tests, Docker, Docker Compose, bounded SSH deploy steps, and server health checks.</p>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">Android</span>
+                                <h3>Android Improvements</h3>
+                                <p>Android is available now, with logcat filtering and ProGuard/R8 release checks still planned.</p>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">Release</span>
+                                <h3>Release And Quality</h3>
+                                <p>Later ideas include coverage reports, security scans, rollback support, and crash or log analysis.</p>
                             </div>
                         </div>
                     </div>
 
                     <div class="showcase-documentation">
                         <h2 class="docs-title">Repository Entry Points</h2>
-                        <p class="docs-description">The repository is organized around an MCP server entry point, platform drivers, audit checks, and setup documentation for local and remote agent use.</p>
+                        <p class="docs-description">The repository is organized around an MCP server entry point, platform drivers, audit checks, approved local automation, and setup documentation for local and remote agent use.</p>
                         <div class="docs-grid">
                             <a href="https://github.com/maneesh888/devtools-mcp" target="_blank" rel="noopener noreferrer" class="doc-item">
                                 <span class="doc-icon">Repo</span>
@@ -160,7 +225,7 @@
                     </div>
 
                     <div class="showcase-cta">
-                        <p class="cta-text">Review the MCP implementation, iOS tooling surface, and setup path for connecting AI agents to local development workflows.</p>
+                        <p class="cta-text">Review the MCP implementation, available iOS and Android tooling, quality checks, and setup path for connecting AI agents to local development workflows.</p>
                         <div class="showcase-actions">
                             <a href="https://github.com/maneesh888/devtools-mcp" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-large showcase-btn">View DevTools MCP</a>
                             <a href="index.html#portfolio" class="btn btn-secondary btn-large showcase-btn">Back to AI Portfolio</a>

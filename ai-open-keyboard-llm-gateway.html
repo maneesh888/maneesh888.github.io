@@ -40,14 +40,14 @@
             <div class="container">
                 <div class="showcase-badge">Self-Hosted AI Backend</div>
                 <h1 class="section-title showcase-title">Open Keyboard LLM Gateway</h1>
-                <p class="showcase-subtitle">A lightweight TypeScript gateway for privacy-first AI writing workflows and local model routing.</p>
+                <p class="showcase-subtitle">A small gateway that connects Open Keyboard-style clients to local or OpenAI-compatible models behind one controlled API.</p>
 
                 <div class="showcase-content">
                     <div class="showcase-hero">
                         <div class="showcase-description">
-                            <p class="showcase-intro"><strong>This project supports Open Keyboard</strong>, an AI writing workflow where the keyboard client can call a controlled backend instead of talking directly to a model provider.</p>
-                            <p class="showcase-highlight"><strong>The gateway</strong> authenticates client keys, rate-limits requests, exposes OpenAI-compatible chat completions, and routes requests to local Ollama models. It keeps model infrastructure under user control while preserving a simple client integration surface.</p>
-                            <p class="showcase-vision"><strong>What this demonstrates:</strong> Practical backend architecture for self-hosted AI tools, including auth, model access control, admin operations, Docker deployment, and tests around critical API behavior.</p>
+                            <p class="showcase-intro"><strong>This project supports Open Keyboard</strong>, where the keyboard handles the writing experience and the gateway controls where AI requests go, which models are available, and who is allowed to use them.</p>
+                            <p class="showcase-highlight"><strong>The gateway</strong> checks the app key, shows available AI models, applies usage limits, and sends the request to the AI model the user chooses.</p>
+                            <p class="showcase-vision"><strong>What this demonstrates:</strong> practical backend architecture for self-hosted AI tools, including auth, model access control, admin operations, OpenAI-compatible endpoints, safer setup, and tests around critical API behavior.</p>
                         </div>
 
                         <div class="showcase-stats-grid">
@@ -61,19 +61,19 @@
                                 <div class="stat-icon">Auth</div>
                                 <div class="stat-value">Keys</div>
                                 <div class="stat-label">Client Access</div>
-                                <div class="stat-detail">Hot-reloaded API keys</div>
+                                <div class="stat-detail">App keys and admin control</div>
                             </div>
                             <div class="stat-box">
-                                <div class="stat-icon">Run</div>
-                                <div class="stat-value">Docker</div>
-                                <div class="stat-label">Deployment</div>
-                                <div class="stat-detail">Containerized gateway</div>
+                                <div class="stat-icon">Limits</div>
+                                <div class="stat-value">Usage</div>
+                                <div class="stat-label">Rate Limits</div>
+                                <div class="stat-detail">Per-key request control</div>
                             </div>
                             <div class="stat-box">
-                                <div class="stat-icon">Tests</div>
-                                <div class="stat-value">Vitest</div>
-                                <div class="stat-label">Coverage</div>
-                                <div class="stat-detail">API and middleware behavior</div>
+                                <div class="stat-icon">Models</div>
+                                <div class="stat-value">Local</div>
+                                <div class="stat-label">Or Compatible</div>
+                                <div class="stat-detail">Ollama and OpenAI-style APIs</div>
                             </div>
                         </div>
                     </div>
@@ -84,22 +84,86 @@
                             <div class="feature-item">
                                 <span class="feature-icon">Auth</span>
                                 <h3>API Key Authentication</h3>
-                                <p>Validates bearer keys, supports key enablement and revocation, and restricts access before model requests reach the proxy layer.</p>
+                                <p>Validates app keys before model requests reach the proxy layer, with admin flows for creating and managing access.</p>
                             </div>
                             <div class="feature-item">
                                 <span class="feature-icon">Limits</span>
                                 <h3>Rate Limiting</h3>
-                                <p>Applies per-key request limits so keyboard clients and experiments can share the backend without uncontrolled traffic.</p>
+                                <p>Applies usage limits per app key so keyboard clients and experiments can share the backend without uncontrolled traffic.</p>
                             </div>
                             <div class="feature-item">
                                 <span class="feature-icon">Models</span>
-                                <h3>Local Model Routing</h3>
-                                <p>Routes OpenAI-compatible chat requests to Ollama, enabling local model use without changing the client integration pattern.</p>
+                                <h3>Model Routing</h3>
+                                <p>Routes OpenAI-compatible chat requests to local or compatible model backends without changing the keyboard integration pattern.</p>
                             </div>
                             <div class="feature-item">
                                 <span class="feature-icon">Admin</span>
                                 <h3>Admin Operations</h3>
-                                <p>Includes an admin API and UI path for key management, model configuration, and operational control of client access.</p>
+                                <p>Includes an admin path for key management, model configuration, and operational control of client access.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="showcase-features">
+                        <h2 class="features-title">Setup Flow</h2>
+                        <div class="features-grid">
+                            <div class="feature-item">
+                                <span class="feature-icon">01</span>
+                                <h3>Start The Gateway</h3>
+                                <p>Run the server that connects the keyboard to the chosen AI model.</p>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">02</span>
+                                <h3>Protect The Admin Page</h3>
+                                <p>Set an admin password and secret before opening the gateway to anyone else.</p>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">03</span>
+                                <h3>Create An App Key</h3>
+                                <p>Create an API key for the keyboard, then choose which models it can use and how many requests it can send.</p>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">04</span>
+                                <h3>Connect The Keyboard</h3>
+                                <p>Enter the gateway URL and API key in Open Keyboard, then test the connection.</p>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">05</span>
+                                <h3>Enable The iOS Keyboard</h3>
+                                <p>Turn on Open Keyboard in iOS Settings. Full Access is needed only for AI actions that call the gateway.</p>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">06</span>
+                                <h3>Use The Writing Tools</h3>
+                                <p>Choose Fix Grammar, Rewrite, or Summarize from the keyboard. Normal typing stays local.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="showcase-features">
+                        <h2 class="features-title">Current State</h2>
+                        <div class="features-grid">
+                            <div class="feature-item">
+                                <span class="feature-icon">Working</span>
+                                <h3>Working Now</h3>
+                                <ul class="detail-list">
+                                    <li>Add a gateway URL and API key in the iOS app.</li>
+                                    <li>Test the connection and load available models.</li>
+                                    <li>Keyboard actions for Fix Grammar, Rewrite, and Summarize.</li>
+                                    <li>Gateway admin page for creating and managing keys.</li>
+                                    <li>Usage limits for each app key.</li>
+                                </ul>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">Next</span>
+                                <h3>Still Needed</h3>
+                                <ul class="detail-list">
+                                    <li>More real-device testing.</li>
+                                    <li>Better handling for selected text and longer paragraphs.</li>
+                                    <li>Clearer error messages when offline, out of requests, or using a wrong key.</li>
+                                    <li>A public setup guide for running the gateway safely.</li>
+                                    <li>More testing across local and hosted AI models.</li>
+                                </ul>
                             </div>
                         </div>
                     </div>
@@ -132,7 +196,7 @@
 
                     <div class="showcase-documentation">
                         <h2 class="docs-title">Repository Entry Points</h2>
-                        <p class="docs-description">The project is structured around a small gateway core, middleware for request control, and deployment files for local hosting.</p>
+                        <p class="docs-description">The project is structured around a small gateway core, middleware for request control, admin setup, and deployment files for local hosting.</p>
                         <div class="docs-grid">
                             <a href="https://github.com/maneesh888/open-keyboard-llm-gateway" target="_blank" rel="noopener noreferrer" class="doc-item">
                                 <span class="doc-icon">Repo</span>
@@ -162,7 +226,7 @@
                     </div>
 
                     <div class="showcase-cta">
-                        <p class="cta-text">Review the gateway implementation, the client project it supports, and the self-hosted AI workflow behind the keyboard experience.</p>
+                        <p class="cta-text">Review the gateway implementation, the client project it supports, and the controlled AI workflow behind the keyboard experience.</p>
                         <div class="showcase-actions">
                             <a href="https://github.com/maneesh888/open-keyboard-llm-gateway" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-large showcase-btn">View Gateway</a>
                             <a href="ai-open-keyboard.html" class="btn btn-secondary btn-large showcase-btn">Open Keyboard Detail</a>

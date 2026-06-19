@@ -40,14 +40,14 @@
             <div class="container">
                 <div class="showcase-badge">Privacy-First AI Keyboard</div>
                 <h1 class="section-title showcase-title">Open Keyboard</h1>
-                <p class="showcase-subtitle">An open-source iOS AI writing assistant delivered through a custom keyboard and paired with a self-hosted gateway.</p>
+                <p class="showcase-subtitle">An iOS keyboard experiment for AI-assisted writing: grammar fixes, rewrites, tone changes, summaries, and practical writing help from inside the keyboard.</p>
 
                 <div class="showcase-content">
                     <div class="showcase-hero">
                         <div class="showcase-description">
-                            <p class="showcase-intro"><strong>Open Keyboard is the user-facing AI product</strong>: a custom iOS keyboard intended to provide normal typing plus high-quality writing assistance.</p>
-                            <p class="showcase-highlight"><strong>The goal</strong> is a Grammarly-class writing assistant for iOS with suggestions, grammar fixes, rewrites, tone changes, summaries, and smart replies while keeping the user's gateway, keys, logs, and model backend under their control.</p>
-                            <p class="showcase-vision"><strong>What this demonstrates:</strong> iOS keyboard extension architecture, SwiftUI-first product development, test-first core logic, privacy-aware AI workflows, and integration with a self-hosted LLM backend.</p>
+                            <p class="showcase-intro"><strong>Open Keyboard is the client experience</strong>: a custom iOS keyboard where you can type normally and ask for AI help when you need grammar fixes, rewrites, tone changes, or summaries.</p>
+                            <p class="showcase-highlight"><strong>The privacy direction</strong> is that normal typing stays on the device. Text is sent out only when the user chooses an AI action, and it goes to the gateway they configure.</p>
+                            <p class="showcase-vision"><strong>Current status:</strong> active prototype. The current focus is product fit, reliable keyboard behavior, privacy copy, and a cleaner path between the app and gateway.</p>
                         </div>
 
                         <div class="showcase-stats-grid">
@@ -64,16 +64,16 @@
                                 <div class="stat-detail">Custom typing surface</div>
                             </div>
                             <div class="stat-box">
-                                <div class="stat-icon">Core</div>
-                                <div class="stat-value">48+</div>
-                                <div class="stat-label">Core Tests</div>
-                                <div class="stat-detail">Config, prompts, gateway logic</div>
+                                <div class="stat-icon">AI</div>
+                                <div class="stat-value">Choice</div>
+                                <div class="stat-label">AI Actions</div>
+                                <div class="stat-detail">Fix Grammar, Rewrite, Summarize</div>
                             </div>
                             <div class="stat-box">
-                                <div class="stat-icon">CI</div>
-                                <div class="stat-value">Buildable</div>
-                                <div class="stat-label">iOS Shell</div>
-                                <div class="stat-detail">App and extension build path</div>
+                                <div class="stat-icon">Backend</div>
+                                <div class="stat-value">Gateway</div>
+                                <div class="stat-label">User Controlled</div>
+                                <div class="stat-detail">Keys, models, limits, logs</div>
                             </div>
                         </div>
                     </div>
@@ -84,22 +84,43 @@
                             <div class="feature-item">
                                 <span class="feature-icon">Keyboard</span>
                                 <h3>Custom iOS Keyboard</h3>
-                                <p>Buildable keyboard extension shell with core typing behavior including letters, shift, globe, delete, space, and return.</p>
+                                <p>The keyboard handles the writing experience: normal typing first, then AI actions when the user asks for help.</p>
                             </div>
                             <div class="feature-item">
                                 <span class="feature-icon">Writing</span>
                                 <h3>AI Writing Actions</h3>
-                                <p>Core prompt generation for grammar, rewrite, summarize, continue writing, tone transforms, and custom templates.</p>
+                                <p>Fix Grammar, Rewrite, Summarize, and related writing tools are routed through the configured backend instead of being hidden inside the keyboard app.</p>
                             </div>
                             <div class="feature-item">
                                 <span class="feature-icon">Privacy</span>
                                 <h3>User-Controlled Backend</h3>
-                                <p>Pairs with a self-hosted gateway instead of embedding provider secrets or sending typed text directly to third-party keyboard services.</p>
+                                <p>The gateway decides where AI requests go: a local model, a private server, or a hosted AI provider selected by the user.</p>
                             </div>
                             <div class="feature-item">
                                 <span class="feature-icon">Testing</span>
-                                <h3>Test-First Core</h3>
-                                <p>OpenKeyboardCore validates gateway config, model parsing, chat requests, error mapping, keyboard reducer behavior, and replacement strategies.</p>
+                                <h3>Privacy Copy And Product Fit</h3>
+                                <p>A keyboard can see sensitive text, so the product work focuses on clear behavior, explicit AI actions, and understandable setup.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="showcase-features">
+                        <h2 class="features-title">Privacy And Control</h2>
+                        <div class="features-grid">
+                            <div class="feature-item">
+                                <span class="feature-icon">Local</span>
+                                <h3>Normal Typing Stays Local</h3>
+                                <p>The keyboard does not need the internet for everyday typing.</p>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">Action</span>
+                                <h3>AI Runs By Choice</h3>
+                                <p>Text is sent only when the user taps an AI action such as Fix Grammar, Rewrite, or Summarize.</p>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">Gateway</span>
+                                <h3>You Control The Gateway</h3>
+                                <p>The gateway can use local models, private infrastructure, or a hosted AI provider, depending on the user's setup.</p>
                             </div>
                         </div>
                     </div>
@@ -132,7 +153,7 @@
 
                     <div class="showcase-documentation">
                         <h2 class="docs-title">Repository Entry Points</h2>
-                        <p class="docs-description">The project separates user-facing iOS surfaces from testable core logic and the gateway-backed AI writing flow.</p>
+                        <p class="docs-description">The project separates the user-facing iOS keyboard from the gateway-backed AI writing flow. The gateway is the backend layer that routes requests to local or compatible models.</p>
                         <div class="docs-grid">
                             <a href="https://github.com/maneesh888/open-keyboard" target="_blank" rel="noopener noreferrer" class="doc-item">
                                 <span class="doc-icon">Repo</span>
@@ -162,7 +183,7 @@
                     </div>
 
                     <div class="showcase-cta">
-                        <p class="cta-text">Review the iOS keyboard project, then follow the gateway detail page to see the backend layer used for authentication, rate limits, and local model routing.</p>
+                        <p class="cta-text">Review the iOS keyboard project, then follow the gateway detail page to see how keys, models, rate limits, and AI request routing work.</p>
                         <div class="showcase-actions">
                             <a href="https://github.com/maneesh888/open-keyboard" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-large showcase-btn">View Open Keyboard</a>
                             <a href="ai-open-keyboard-llm-gateway.html" class="btn btn-secondary btn-large showcase-btn">View Gateway Detail</a>

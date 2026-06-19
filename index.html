@@ -207,7 +207,7 @@
     <section id="portfolio" class="ai-portfolio">
         <div class="container">
             <h2 class="section-title">AI Portfolio</h2>
-            <p class="portfolio-lead">Separate from client work: projects that show how I use AI tools, local models, and automation while keeping architecture and quality under human control.</p>
+            <p class="portfolio-lead">Separate from client work: projects that show how I use AI tools, local models, automation, and product experiments while keeping architecture, quality, and status visible.</p>
 
             <div class="projects-grid">
                 <article class="project-card portfolio-project">
@@ -215,8 +215,8 @@
                         <h3>Just Spent</h3>
                         <span class="project-badge portfolio-badge">AI Experiment</span>
                     </div>
-                    <p class="project-org">Cross-platform voice expense tracker</p>
-                    <p class="project-description">An iOS and Android expense tracker designed around natural voice input, built as an AI-assisted development experiment.</p>
+                    <p class="project-org">Voice-first personal finance prototype</p>
+                    <p class="project-description">A native iOS and Android experiment around quickly capturing expenses by voice and turning them into structured local records.</p>
                     <div class="project-tech">
                         <span class="tech-tag">SwiftUI</span>
                         <span class="tech-tag">Kotlin</span>
@@ -225,9 +225,9 @@
                         <span class="tech-tag">Room</span>
                     </div>
                     <ul class="project-highlights">
-                        <li>Defined architecture, specifications, and product direction</li>
-                        <li>Reviewed AI-generated implementation for quality and consistency</li>
-                        <li>Focused on voice-first UX, tests, and cross-platform behavior</li>
+                        <li>Built around Siri/Gemini-style natural expense capture</li>
+                        <li>Tracks current status openly, including 425 / 428 passing tests</li>
+                        <li>Documents remaining assistant-platform and UI-test blockers</li>
                     </ul>
                     <div class="project-links">
                         <a href="ai-just-spent.html" class="project-link">View Details →</a>
@@ -240,8 +240,8 @@
                         <h3>Open Keyboard</h3>
                         <span class="project-badge portfolio-badge">AI iOS App</span>
                     </div>
-                    <p class="project-org">Privacy-first AI writing keyboard</p>
-                    <p class="project-description">An open-source iOS keyboard for AI suggestions, rewrites, tone changes, and self-hosted writing assistance.</p>
+                    <p class="project-org">Privacy-aware AI writing keyboard</p>
+                    <p class="project-description">An iOS keyboard experiment for AI-assisted writing: grammar fixes, rewrites, tone changes, summaries, and practical writing help inside the keyboard.</p>
                     <div class="project-tech">
                         <span class="tech-tag">Swift</span>
                         <span class="tech-tag">SwiftUI</span>
@@ -250,9 +250,9 @@
                         <span class="tech-tag">OpenKeyboardCore</span>
                     </div>
                     <ul class="project-highlights">
-                        <li>Built a host app and custom keyboard extension shell</li>
-                        <li>Developed test-first core logic for gateway config and writing actions</li>
-                        <li>Designed privacy-first pairing with a user-controlled LLM Gateway</li>
+                        <li>Normal typing is designed to stay local on the device</li>
+                        <li>AI actions run by choice through a configured gateway</li>
+                        <li>Current focus is reliable keyboard behavior and cleaner app-to-gateway flow</li>
                     </ul>
                     <div class="project-links">
                         <a href="ai-open-keyboard.html" class="project-link">View Details →</a>
@@ -265,8 +265,8 @@
                         <h3>Open Keyboard LLM Gateway</h3>
                         <span class="project-badge portfolio-badge">AI Backend</span>
                     </div>
-                    <p class="project-org">Self-hosted backend for AI writing tools</p>
-                    <p class="project-description">A small TypeScript gateway for privacy-first AI writing workflows, connecting Open Keyboard to local Ollama models.</p>
+                    <p class="project-org">Self-hostable backend for AI writing tools</p>
+                    <p class="project-description">A small gateway that connects Open Keyboard-style clients to local or OpenAI-compatible models behind one controlled API.</p>
                     <div class="project-tech">
                         <span class="tech-tag">TypeScript</span>
                         <span class="tech-tag">Hono</span>
@@ -275,9 +275,9 @@
                         <span class="tech-tag">Vitest</span>
                     </div>
                     <ul class="project-highlights">
-                        <li>Authenticated client keys and rate-limited model requests</li>
-                        <li>Routed OpenAI-compatible chat calls to self-hosted models</li>
-                        <li>Built for model routing, key management, and local AI suggestions</li>
+                        <li>Checks app keys, available models, usage limits, and request routing</li>
+                        <li>Supports admin key management and safer gateway setup flows</li>
+                        <li>Uses OpenAI-compatible endpoints for client integration</li>
                     </ul>
                     <div class="project-links">
                         <a href="ai-open-keyboard-llm-gateway.html" class="project-link">View Details →</a>
@@ -291,7 +291,7 @@
                         <span class="project-badge portfolio-badge">MCP Server</span>
                     </div>
                     <p class="project-org">Development automation for AI agents</p>
-                    <p class="project-description">A Python MCP server that gives AI agents access to real development tools for build automation, simulator management, audits, and Xcode control.</p>
+                    <p class="project-description">A Python MCP server that gives AI coding agents structured access to builds, simulators, emulators, tests, screenshots, logs, audits, and safe local automation.</p>
                     <div class="project-tech">
                         <span class="tech-tag">Python</span>
                         <span class="tech-tag">MCP</span>
@@ -300,9 +300,9 @@
                         <span class="tech-tag">pytest</span>
                     </div>
                     <ul class="project-highlights">
-                        <li>Exposes iOS build, simulator listing, Xcode run/stop, and audit tools</li>
-                        <li>Parses build errors into structured file, line, column, and message output</li>
-                        <li>Supports local MCP setup and SSE mode for container-to-host workflows</li>
+                        <li>Available tools cover iOS/Xcode, Android, and shared workflow automation</li>
+                        <li>Parses build output into compact structured results for agents</li>
+                        <li>Roadmap includes web, backend, release, and deeper quality tooling</li>
                     </ul>
                     <div class="project-links">
                         <a href="ai-devtools-mcp.html" class="project-link">View Details →</a>
