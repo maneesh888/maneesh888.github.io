@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Maneesh | Senior iOS Developer</title>
     <meta name="description" content="Senior iOS Developer with 10+ years of experience building production apps across the Apple ecosystem. Specializing in modular architecture and legacy modernization. Based in Dubai, UAE.">
-    <link rel="stylesheet" href="style.css?v=20260613-card-align">
+    <link rel="stylesheet" href="style.css?v=20260704-manager">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -241,7 +241,7 @@
                         <span class="project-badge portfolio-badge">AI iOS App</span>
                     </div>
                     <p class="project-org">Privacy-aware AI writing keyboard</p>
-                    <p class="project-description">An iOS keyboard prototype for AI-assisted writing, with separate grammar correction and writing-action workflows inside the custom keyboard extension.</p>
+                    <p class="project-description">A working iOS keyboard prototype that brings grammar review and AI writing help into real text fields while keeping replacement under user control.</p>
                     <div class="project-tech">
                         <span class="tech-tag">Swift</span>
                         <span class="tech-tag">SwiftUI</span>
@@ -250,9 +250,9 @@
                         <span class="tech-tag">OpenKeyboardCore</span>
                     </div>
                     <ul class="project-highlights">
-                        <li>Normal typing is designed to stay local on the device</li>
-                        <li>Grammar correction is separate from Improve, Rephrase, and Summarize-style writing actions</li>
-                        <li>Recent work added suggestion selection, retry, copy, and accept controls for AI-generated improvements</li>
+                        <li>Host app, keyboard extension, gateway setup, and playground are working</li>
+                        <li>Grammar review and broader AI writing actions are separate product flows</li>
+                        <li>Current focus is polish, real-device validation, and public setup guidance</li>
                     </ul>
                     <div class="project-links">
                         <a href="ai-open-keyboard.html" class="project-link">View Details →</a>
@@ -266,7 +266,7 @@
                         <span class="project-badge portfolio-badge">AI Backend</span>
                     </div>
                     <p class="project-org">Self-hostable backend for AI writing tools</p>
-                    <p class="project-description">A local LLM gateway for routing AI requests through controlled client keys, model access rules, and OpenAI-compatible endpoints.</p>
+                    <p class="project-description">A local control layer for AI requests with managed client keys, model access rules, request limits, and an admin playground.</p>
                     <div class="project-tech">
                         <span class="tech-tag">TypeScript</span>
                         <span class="tech-tag">Hono</span>
@@ -275,9 +275,9 @@
                         <span class="tech-tag">Vitest</span>
                     </div>
                     <ul class="project-highlights">
-                        <li>Routes client requests to local Ollama-compatible and optional companion model backends</li>
-                        <li>Includes admin key management, model selection, rate limits, and a live key tester</li>
-                        <li>Normalizes structured OpenKeyboard grammar, rewrite, summarize, translate, and continuation requests</li>
+                        <li>Admin UI can manage keys, models, limits, and live request testing</li>
+                        <li>Gateway separates product clients from model credentials and backend routing</li>
+                        <li>Current focus is self-hosted hardening, setup guidance, and integration contracts</li>
                     </ul>
                     <div class="project-links">
                         <a href="ai-open-keyboard-llm-gateway.html" class="project-link">View Details →</a>

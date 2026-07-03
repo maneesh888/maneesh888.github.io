@@ -1065,6 +1065,7 @@ section {
 }
 
 .showcase-features,
+.showcase-visuals,
 .showcase-tech,
 .showcase-documentation {
     margin-bottom: 4rem;
@@ -1148,6 +1149,76 @@ section {
 
 .detail-list li:last-child {
     margin-bottom: 0;
+}
+
+.visual-grid {
+    display: grid;
+    gap: 1.25rem;
+}
+
+.visual-grid-phone {
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+}
+
+.visual-grid-wide {
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+}
+
+.visual-card {
+    background: var(--dark-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    margin: 0;
+    overflow: hidden;
+}
+
+.visual-frame {
+    align-items: center;
+    background: linear-gradient(180deg, rgba(235, 245, 255, 0.16), rgba(0, 122, 255, 0.08));
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: center;
+    min-height: 280px;
+    overflow: hidden;
+    padding: 1rem;
+}
+
+.visual-frame img {
+    display: block;
+    height: auto;
+    max-width: 100%;
+}
+
+.visual-frame-phone img {
+    border-radius: 18px;
+    max-height: 620px;
+}
+
+.visual-frame-wide {
+    min-height: 320px;
+    padding: 0.75rem;
+}
+
+.visual-frame-wide img {
+    border-radius: 6px;
+    max-height: 520px;
+}
+
+.visual-card figcaption {
+    color: var(--text-tertiary);
+    display: grid;
+    gap: 0.35rem;
+    line-height: 1.6;
+    padding: 1rem;
+}
+
+.visual-card figcaption strong {
+    color: var(--text-primary);
+    font-size: 0.95rem;
+}
+
+.visual-card figcaption span {
+    font-size: 0.9rem;
 }
 
 .tech-platforms {
@@ -1517,7 +1588,8 @@ section {
 
     .features-grid,
     .tech-platforms,
-    .docs-grid {
+    .docs-grid,
+    .visual-grid-wide {
         grid-template-columns: 1fr;
     }
 
@@ -1534,6 +1606,10 @@ section {
     .showcase-actions .btn {
         justify-content: center;
         width: 100%;
+    }
+
+    .visual-frame-wide {
+        min-height: 220px;
     }
 }
 
@@ -1578,6 +1654,14 @@ section {
     .showcase-btn {
         font-size: 1rem;
         padding: 1rem 2rem;
+    }
+
+    .visual-grid-phone {
+        grid-template-columns: 1fr;
+    }
+
+    .visual-frame-phone img {
+        max-height: 560px;
     }
 
 }
