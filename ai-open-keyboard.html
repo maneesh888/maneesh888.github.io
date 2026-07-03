@@ -47,7 +47,7 @@
                         <div class="showcase-description">
                             <p class="showcase-intro"><strong>Open Keyboard is the client experience</strong>: a custom iOS keyboard where you can type normally and ask for AI help when you need grammar fixes, improvements, rephrasing, or summaries.</p>
                             <p class="showcase-highlight"><strong>The privacy direction</strong> is that normal typing stays on the device. Text is sent out only when the user chooses an AI action, and it goes to the gateway they configure.</p>
-                            <p class="showcase-vision"><strong>Current status:</strong> active prototype. Recent work focused on the keyboard extension itself: separating grammar review from AI writing tools, making Improve perform a real request, and tightening reliability around loading and replacement behavior.</p>
+                            <p class="showcase-vision"><strong>Current status:</strong> active prototype. Recent work completed the first usable AI writing workflow inside the keyboard extension, separated grammar correction from broader writing tools, and improved reliability around loading and text replacement behavior.</p>
                         </div>
 
                         <div class="showcase-stats-grid">
@@ -109,32 +109,32 @@
                         <div class="features-grid">
                             <div class="feature-item">
                                 <span class="feature-icon">Writing</span>
-                                <h3>AI Writing Tools In The Keyboard</h3>
-                                <p>The top-right AI action button now opens a writing workflow instead of a static mock, with source text, generated suggestions, selected action state, and explicit apply behavior.</p>
+                                <h3>AI Writing Workflow</h3>
+                                <p>Implemented AI writing workflows inside the keyboard extension, replacing the earlier placeholder experience with generated suggestions, selected-operation state, and explicit accept behavior.</p>
                                 <ul class="detail-list">
                                     <li>Improve runs through the configured AI path.</li>
-                                    <li>Users can retry a request, show or hide action options, copy a suggestion, or accept it into the current text.</li>
+                                    <li>Suggestions include retry, copy, and accept/replace actions.</li>
                                     <li>Rephrase and Summarize remain part of the same writing-action surface.</li>
                                 </ul>
                             </div>
                             <div class="feature-item">
                                 <span class="feature-icon">Grammar</span>
-                                <h3>Separate Grammar Correction</h3>
-                                <p>The left grammar/status control is now treated as its own workflow for typo and grammar review, rather than being mixed with the broader writing tools.</p>
+                                <h3>Grammar Correction Workflow</h3>
+                                <p>Grammar and typo correction now has its own product flow, separate from broader AI writing tools such as Improve, Rephrase, and Summarize.</p>
                                 <ul class="detail-list">
-                                    <li>Tapping it starts or shows grammar correction for the current text.</li>
+                                    <li>Starting grammar review requests corrections for the current text.</li>
                                     <li>Results can show corrections, a no-issues state, or a visible error state.</li>
-                                    <li>The control stays available unless there is a hard blocker such as missing Full Access, missing gateway setup, a gateway connection error, or an unrecovered AI/parsing error.</li>
+                                    <li>Grammar review remains available unless configuration, network access, or unrecovered AI/parsing errors block the request.</li>
                                 </ul>
                             </div>
                             <div class="feature-item">
                                 <span class="feature-icon">Quality</span>
-                                <h3>More Reliable Correction Flow</h3>
-                                <p>Manual grammar correction is tracked separately from automatic analysis, which prevents a cancelled background analysis from leaving the manual correction flow stuck in loading.</p>
+                                <h3>Completed Reliability Fixes</h3>
+                                <p>Fixed the manual grammar loading and replacement bugs that were blocking reliable correction review.</p>
                                 <ul class="detail-list">
-                                    <li>Manual grammar requests have their own request state.</li>
-                                    <li>Correction replacement respects word boundaries for single-character fixes.</li>
-                                    <li>Article corrections such as changing "a" to "an" avoid stale replacements that could duplicate text.</li>
+                                    <li>Manual grammar requests are tracked independently from background analysis.</li>
+                                    <li>Cancelled automatic analysis no longer leaves manual review stuck loading.</li>
+                                    <li>Single-character article corrections now respect word boundaries and avoid stale duplicate replacements.</li>
                                 </ul>
                             </div>
                             <div class="feature-item">
@@ -145,6 +145,33 @@
                                     <li>Preview support covers the new AI writing panel states.</li>
                                     <li>Regression tests cover grammar loading and correction replacement behavior.</li>
                                     <li>Focused real-extension smoke coverage verifies the configured keyboard AI controls.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="showcase-features">
+                        <h2 class="features-title">Project State</h2>
+                        <div class="features-grid">
+                            <div class="feature-item">
+                                <span class="feature-icon">Current</span>
+                                <h3>Completed Features</h3>
+                                <ul class="detail-list">
+                                    <li>Buildable iOS host app and custom keyboard extension.</li>
+                                    <li>Gateway pairing with URL entry, API key storage, connection testing, and model discovery.</li>
+                                    <li>Separate grammar correction and AI writing workflows inside the keyboard extension.</li>
+                                    <li>Improve, Rephrase, and Summarize writing actions with explicit review before replacement.</li>
+                                    <li>Regression coverage for grammar loading and correction replacement behavior.</li>
+                                </ul>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">Next</span>
+                                <h3>Still In Progress</h3>
+                                <ul class="detail-list">
+                                    <li>More complete selected-text and paragraph-level replacement behavior.</li>
+                                    <li>Continue Writing and Translate actions in the extension UI.</li>
+                                    <li>Broader real-device testing, prompt-quality evaluation, and latency checks across model backends.</li>
+                                    <li>TestFlight signing, App Store privacy details, and a public hardening guide before release.</li>
                                 </ul>
                             </div>
                         </div>
@@ -223,16 +250,16 @@
                             </a>
                             <a href="ai-open-keyboard-llm-gateway.html" class="doc-item">
                                 <span class="doc-icon">Pair</span>
-                                <span class="doc-name">LLM Gateway detail page</span>
+                                <span class="doc-name">Open Keyboard + LLM Gateway</span>
                             </a>
                         </div>
                     </div>
 
                     <div class="showcase-cta">
-                        <p class="cta-text">Review the iOS keyboard project, then follow the gateway detail page to see how keys, models, rate limits, and AI request routing work.</p>
+                        <p class="cta-text">Review the iOS keyboard project, then follow the combined project page to see how the keyboard and gateway work together.</p>
                         <div class="showcase-actions">
                             <a href="https://github.com/maneesh888/open-keyboard" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-large showcase-btn">View Open Keyboard</a>
-                            <a href="ai-open-keyboard-llm-gateway.html" class="btn btn-secondary btn-large showcase-btn">View Gateway Detail</a>
+                            <a href="ai-open-keyboard-llm-gateway.html" class="btn btn-secondary btn-large showcase-btn">View Combined Project</a>
                             <a href="index.html#portfolio" class="btn btn-secondary btn-large showcase-btn">Back to AI Portfolio</a>
                         </div>
                     </div>
