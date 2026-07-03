@@ -266,7 +266,7 @@
                         <span class="project-badge portfolio-badge">AI Backend</span>
                     </div>
                     <p class="project-org">Self-hostable backend for AI writing tools</p>
-                    <p class="project-description">A small gateway that connects Open Keyboard-style clients to local or OpenAI-compatible models behind one controlled API.</p>
+                    <p class="project-description">A local LLM gateway for routing AI requests through controlled client keys, model access rules, and OpenAI-compatible endpoints.</p>
                     <div class="project-tech">
                         <span class="tech-tag">TypeScript</span>
                         <span class="tech-tag">Hono</span>
@@ -275,9 +275,9 @@
                         <span class="tech-tag">Vitest</span>
                     </div>
                     <ul class="project-highlights">
-                        <li>Checks app keys, available models, usage limits, and request routing</li>
-                        <li>Supports admin key management and safer gateway setup flows</li>
-                        <li>Uses OpenAI-compatible endpoints for client integration</li>
+                        <li>Routes client requests to local Ollama-compatible and optional companion model backends</li>
+                        <li>Includes admin key management, model selection, rate limits, and a live key tester</li>
+                        <li>Normalizes structured OpenKeyboard grammar, rewrite, summarize, translate, and continuation requests</li>
                     </ul>
                     <div class="project-links">
                         <a href="ai-open-keyboard-llm-gateway.html" class="project-link">View Details →</a>

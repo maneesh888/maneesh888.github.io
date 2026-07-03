@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Open Keyboard LLM Gateway | AI Portfolio | Maneesh</title>
-    <meta name="description" content="Open Keyboard LLM Gateway AI project detail page by Maneesh Madayan. Self-hosted TypeScript gateway for local AI writing tools.">
+    <meta name="description" content="Open Keyboard LLM Gateway AI project detail page by Maneesh Madayan. Local TypeScript gateway for controlled AI request routing, key management, and OpenKeyboard writing workflows.">
     <link rel="stylesheet" href="style.css?v=20260602-ai-keyboard">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -38,30 +38,30 @@
     <main>
         <section class="portfolio-showcase">
             <div class="container">
-                <div class="showcase-badge">Self-Hosted AI Backend</div>
+                <div class="showcase-badge">Local AI Infrastructure</div>
                 <h1 class="section-title showcase-title">Open Keyboard LLM Gateway</h1>
-                <p class="showcase-subtitle">A small gateway that connects Open Keyboard-style clients to local or OpenAI-compatible models behind one controlled API.</p>
+                <p class="showcase-subtitle">A local LLM gateway for routing AI requests through controlled client keys, model access rules, and OpenAI-compatible endpoints.</p>
 
                 <div class="showcase-content">
                     <div class="showcase-hero">
                         <div class="showcase-description">
-                            <p class="showcase-intro"><strong>This project supports Open Keyboard</strong>, where the keyboard handles the writing experience and the gateway controls where AI requests go, which models are available, and who is allowed to use them.</p>
-                            <p class="showcase-highlight"><strong>The gateway</strong> checks the app key, shows available AI models, applies usage limits, and sends the request to the AI model the user chooses.</p>
-                            <p class="showcase-vision"><strong>What this demonstrates:</strong> practical backend architecture for self-hosted AI tools, including auth, model access control, admin operations, OpenAI-compatible endpoints, safer setup, and tests around critical API behavior.</p>
+                            <p class="showcase-intro"><strong>This project supports Open Keyboard</strong>, where the keyboard owns the user experience and the gateway owns request routing, client access, model selection, and operational controls.</p>
+                            <p class="showcase-highlight"><strong>The gateway</strong> validates client keys, applies per-key limits, returns scoped model lists, and forwards OpenAI-compatible chat requests to configured local or companion model backends.</p>
+                            <p class="showcase-vision"><strong>Current status:</strong> active local infrastructure. Recent work added a stronger admin console, structured OpenKeyboard operation handling, key-scoped model discovery, Docker preflight checks, and targeted regression coverage.</p>
                         </div>
 
                         <div class="showcase-stats-grid">
                             <div class="stat-box">
                                 <div class="stat-icon">API</div>
-                                <div class="stat-value">OpenAI</div>
+                                <div class="stat-value">Chat</div>
                                 <div class="stat-label">Compatible</div>
-                                <div class="stat-detail">Chat completion surface</div>
+                                <div class="stat-detail">OpenAI-style endpoints</div>
                             </div>
                             <div class="stat-box">
                                 <div class="stat-icon">Auth</div>
                                 <div class="stat-value">Keys</div>
                                 <div class="stat-label">Client Access</div>
-                                <div class="stat-detail">App keys and admin control</div>
+                                <div class="stat-detail">Admin API and UI</div>
                             </div>
                             <div class="stat-box">
                                 <div class="stat-icon">Limits</div>
@@ -71,9 +71,9 @@
                             </div>
                             <div class="stat-box">
                                 <div class="stat-icon">Models</div>
-                                <div class="stat-value">Local</div>
-                                <div class="stat-label">Or Compatible</div>
-                                <div class="stat-detail">Ollama and OpenAI-style APIs</div>
+                                <div class="stat-value">Scoped</div>
+                                <div class="stat-label">Discovery</div>
+                                <div class="stat-detail">Per-key model access</div>
                             </div>
                         </div>
                     </div>
@@ -83,59 +83,69 @@
                         <div class="features-grid">
                             <div class="feature-item">
                                 <span class="feature-icon">Auth</span>
-                                <h3>API Key Authentication</h3>
-                                <p>Validates app keys before model requests reach the proxy layer, with admin flows for creating and managing access.</p>
+                                <h3>Client Key Authentication</h3>
+                                <p>Validates client keys before model requests reach the proxy layer, with admin workflows for creating, editing, disabling, and testing access.</p>
                             </div>
                             <div class="feature-item">
                                 <span class="feature-icon">Limits</span>
-                                <h3>Rate Limiting</h3>
-                                <p>Applies usage limits per app key so keyboard clients and experiments can share the backend without uncontrolled traffic.</p>
+                                <h3>Request Controls</h3>
+                                <p>Applies per-key request limits, burst settings, model defaults, and allowed-model rules so local tools can share the gateway with clearer boundaries.</p>
                             </div>
                             <div class="feature-item">
                                 <span class="feature-icon">Models</span>
                                 <h3>Model Routing</h3>
-                                <p>Routes OpenAI-compatible chat requests to local or compatible model backends without changing the keyboard integration pattern.</p>
+                                <p>Routes OpenAI-compatible chat requests to Ollama-compatible backends and an optional companion model backend without changing the client integration pattern.</p>
                             </div>
                             <div class="feature-item">
                                 <span class="feature-icon">Admin</span>
-                                <h3>Admin Operations</h3>
-                                <p>Includes an admin path for key management, model configuration, and operational control of client access.</p>
+                                <h3>Admin Console And Playground</h3>
+                                <p>Includes a responsive admin console for key management plus a key tester/playground for validating live chat and structured writing-operation requests.</p>
                             </div>
                         </div>
                     </div>
 
                     <div class="showcase-features">
-                        <h2 class="features-title">Setup Flow</h2>
+                        <h2 class="features-title">Latest Gateway Progress</h2>
                         <div class="features-grid">
                             <div class="feature-item">
-                                <span class="feature-icon">01</span>
-                                <h3>Start The Gateway</h3>
-                                <p>Run the server that connects the keyboard to the chosen AI model.</p>
+                                <span class="feature-icon">Admin</span>
+                                <h3>Operational Admin Console</h3>
+                                <p>The admin surface now supports API key management, model selection, rate-limit settings, responsive navigation, and a playground for testing a selected key.</p>
+                                <ul class="detail-list">
+                                    <li>Create, edit, disable, and delete client keys through the admin UI/API.</li>
+                                    <li>Choose available models from the gateway and keep a manual fallback when needed.</li>
+                                    <li>Use the key tester to verify live chat behavior for a selected client key.</li>
+                                </ul>
                             </div>
                             <div class="feature-item">
-                                <span class="feature-icon">02</span>
-                                <h3>Protect The Admin Page</h3>
-                                <p>Set an admin password and secret before opening the gateway to anyone else.</p>
+                                <span class="feature-icon">Contract</span>
+                                <h3>Structured Writing Operations</h3>
+                                <p>The proxy understands OpenKeyboard operation requests and shapes responses into structured results that the keyboard can render consistently.</p>
+                                <ul class="detail-list">
+                                    <li>Supports grammar correction, summarization, rewriting, translation, and continuation operation names.</li>
+                                    <li>Normalizes correction items, summaries, replacement text, ranges, confidence, category, and warnings where returned by the model.</li>
+                                    <li>Rejects unsupported or invalid structured requests before forwarding them upstream.</li>
+                                </ul>
                             </div>
                             <div class="feature-item">
-                                <span class="feature-icon">03</span>
-                                <h3>Create An App Key</h3>
-                                <p>Create an API key for the keyboard, then choose which models it can use and how many requests it can send.</p>
+                                <span class="feature-icon">Models</span>
+                                <h3>Scoped Model Discovery</h3>
+                                <p>Model listing now respects each key's model configuration and allowlist, so clients see the model set they are allowed to use.</p>
+                                <ul class="detail-list">
+                                    <li>Returns OpenAI-style model-list responses for client discovery.</li>
+                                    <li>Supports local Ollama-compatible models and an optional companion model backend.</li>
+                                    <li>Prevents disallowed model requests before the gateway forwards a chat call.</li>
+                                </ul>
                             </div>
                             <div class="feature-item">
-                                <span class="feature-icon">04</span>
-                                <h3>Connect The Keyboard</h3>
-                                <p>Enter the gateway URL and API key in Open Keyboard, then test the connection.</p>
-                            </div>
-                            <div class="feature-item">
-                                <span class="feature-icon">05</span>
-                                <h3>Enable The iOS Keyboard</h3>
-                                <p>Turn on Open Keyboard in iOS Settings. Full Access is needed only for AI actions that call the gateway.</p>
-                            </div>
-                            <div class="feature-item">
-                                <span class="feature-icon">06</span>
-                                <h3>Use The Writing Tools</h3>
-                                <p>Choose Fix Grammar, Rewrite, or Summarize from the keyboard. Normal typing stays local.</p>
+                                <span class="feature-icon">Ops</span>
+                                <h3>Reliability And Deployment Hygiene</h3>
+                                <p>Recent work improved gateway development and deployment checks without putting runtime configuration into public website or application code.</p>
+                                <ul class="detail-list">
+                                    <li>Docker base-image preflight catches host, registry, and timeout issues before a build is treated as an application failure.</li>
+                                    <li>The proxy keeps client authentication separate from upstream model calls.</li>
+                                    <li>Build and targeted test scripts are part of the local verification workflow.</li>
+                                </ul>
                             </div>
                         </div>
                     </div>
@@ -147,22 +157,21 @@
                                 <span class="feature-icon">Working</span>
                                 <h3>Working Now</h3>
                                 <ul class="detail-list">
-                                    <li>Add a gateway URL and API key in the iOS app.</li>
-                                    <li>Test the connection and load available models.</li>
-                                    <li>Keyboard actions for Fix Grammar, Rewrite, and Summarize.</li>
-                                    <li>Gateway admin page for creating and managing keys.</li>
-                                    <li>Usage limits for each app key.</li>
+                                    <li>OpenAI-compatible health, model discovery, and chat-completion endpoints.</li>
+                                    <li>Client key authentication, per-key rate limits, and model allowlists.</li>
+                                    <li>Admin UI/API for key management, model configuration, and live key testing.</li>
+                                    <li>Structured operation handling for OpenKeyboard writing workflows.</li>
+                                    <li>Docker base-image preflight and targeted regression tests.</li>
                                 </ul>
                             </div>
                             <div class="feature-item">
-                                <span class="feature-icon">Next</span>
-                                <h3>Still Needed</h3>
+                                <span class="feature-icon">Boundary</span>
+                                <h3>Project Boundary</h3>
                                 <ul class="detail-list">
-                                    <li>More real-device testing.</li>
-                                    <li>Better handling for selected text and longer paragraphs.</li>
-                                    <li>Clearer error messages when offline, out of requests, or using a wrong key.</li>
-                                    <li>A public setup guide for running the gateway safely.</li>
-                                    <li>More testing across local and hosted AI models.</li>
+                                    <li>Presented as local/self-hosted infrastructure, not a public SaaS product.</li>
+                                    <li>Production exposure would still require careful hosting, HTTPS, external access controls, and operational monitoring.</li>
+                                    <li>Runtime configuration stays outside the public website and tracked application examples.</li>
+                                    <li>Live model behavior remains environment-dependent; deterministic tests cover gateway contracts and UI wiring.</li>
                                 </ul>
                             </div>
                         </div>
@@ -179,6 +188,7 @@
                                     <span class="tech-tag-inline">Node.js</span>
                                     <span class="tech-tag-inline">CORS</span>
                                     <span class="tech-tag-inline">JSON logging</span>
+                                    <span class="tech-tag-inline">JWT admin auth</span>
                                 </div>
                             </div>
                             <div class="tech-platform">
@@ -196,7 +206,7 @@
 
                     <div class="showcase-documentation">
                         <h2 class="docs-title">Repository Entry Points</h2>
-                        <p class="docs-description">The project is structured around a small gateway core, middleware for request control, admin setup, and deployment files for local hosting.</p>
+                        <p class="docs-description">The project is structured around gateway routing, client access middleware, admin operations, static admin UI, and local deployment checks.</p>
                         <div class="docs-grid">
                             <a href="https://github.com/maneesh888/open-keyboard-llm-gateway" target="_blank" rel="noopener noreferrer" class="doc-item">
                                 <span class="doc-icon">Repo</span>
