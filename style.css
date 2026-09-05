@@ -1066,9 +1066,68 @@ section {
 
 .showcase-features,
 .showcase-visuals,
+.showcase-architecture,
 .showcase-tech,
 .showcase-documentation {
     margin-bottom: 4rem;
+}
+
+.architecture-flow {
+    align-items: stretch;
+    display: flex;
+    gap: 0.75rem;
+    justify-content: center;
+}
+
+.architecture-stage {
+    background: var(--dark-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    display: flex;
+    flex: 1 1 0;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 150px;
+    min-width: 0;
+    padding: 1.25rem;
+    text-align: center;
+}
+
+.architecture-stage-core {
+    background: rgba(0, 122, 255, 0.08);
+    border-color: var(--primary-color);
+    box-shadow: 0 8px 24px rgba(0, 122, 255, 0.12);
+}
+
+.architecture-kicker {
+    color: var(--primary-color);
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.65rem;
+    text-transform: uppercase;
+}
+
+.architecture-stage strong {
+    color: var(--text-primary);
+    font-size: 1rem;
+    line-height: 1.4;
+}
+
+.architecture-stage p {
+    color: var(--text-tertiary);
+    font-size: 0.8rem;
+    line-height: 1.5;
+    margin-top: 0.5rem;
+}
+
+.architecture-arrow {
+    align-items: center;
+    color: var(--primary-color);
+    display: flex;
+    flex: 0 0 auto;
+    font-size: 1.35rem;
+    font-weight: 700;
 }
 
 .features-title,
@@ -1591,6 +1650,20 @@ section {
     .docs-grid,
     .visual-grid-wide {
         grid-template-columns: 1fr;
+    }
+
+    .architecture-flow {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .architecture-stage {
+        min-height: auto;
+    }
+
+    .architecture-arrow {
+        justify-content: center;
+        transform: rotate(90deg);
     }
 
     .showcase-description,
