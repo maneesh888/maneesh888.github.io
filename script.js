@@ -385,6 +385,8 @@ function isNoticeDismissed() {
 
 // Show notice with animation
 function showNotice() {
+    if (!transparencyNotice) return;
+
     setTimeout(() => {
         transparencyNotice.classList.remove('hidden');
     }, 500); // Delay for smooth page load
@@ -392,12 +394,14 @@ function showNotice() {
 
 // Hide notice with animation
 function hideNotice() {
+    if (!transparencyNotice) return;
+
     transparencyNotice.classList.add('hidden');
     localStorage.setItem(NOTICE_DISMISSED_KEY, 'true');
 }
 
 // Initialize notice on page load
-if (!isNoticeDismissed()) {
+if (transparencyNotice && !isNoticeDismissed()) {
     showNotice();
 }
 
